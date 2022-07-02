@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDU.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220626065037_InsertIsDeleted")]
-    partial class InsertIsDeleted
+    [Migration("20220702210507_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
