@@ -1,0 +1,44 @@
+﻿using AutoMapper;
+using EDU.Core.DTOs;
+using EDU.Core.DTOs.UserDTOs;
+using EDU.Core.Entities;
+using EDU.Core.Repositories;
+using EDU.Core.Services;
+using EDU.Core.UnitOfWorks;
+
+namespace EDU.Service.Services
+{
+    public class UserService : Service<User>, IUserService
+    {
+        private readonly IUserRepository _repository;
+        private readonly IMapper _mapper;
+
+        public UserService(IUserRepository repository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<User> genericRepository) : base(genericRepository, unitOfWork)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+        public async Task<CustomResponseDto<GetUserDto>> LoginAsync(LoginDto login)
+        {
+            var user = await _repository.LoginAsync(login);
+            var result = new CustomResponseDto<GetUserDto>();
+            if (user != null)
+            {
+                if (user.Password == login.Password)
+                {
+                    var userDto = _mapper.Map<User, GetUserDto>(user);
+                    result = CustomResponseDto<GetUserDto>.Success(userDto);
+                }
+                else
+                {
+                    result = CustomResponseDto<GetUserDto>.Fail(new List<string>() { "Wrong Password!" });
+                }
+            }
+            else
+            {
+                result = CustomResponseDto<GetUserDto>.Fail(new List<string>() { "User Is Not Register!" });
+            }
+            return result;
+        }
+    }
+}

@@ -35,6 +35,10 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

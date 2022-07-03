@@ -8,7 +8,7 @@ namespace EDU.Service.Mapping
     {
         public MapProfile()
         {
-            CreateMap<SetUserDto, User>();
+            CreateMap<LoginDto, User>();
             CreateMap<User, GetUserDto>().ReverseMap();
         }
     }

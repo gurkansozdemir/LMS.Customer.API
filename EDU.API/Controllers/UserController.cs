@@ -9,12 +9,12 @@ namespace EDU.API.Controllers
 {
     public class UserController : CustomBaseController
     {
-        private readonly IService<User> _service;
+        private readonly IUserService _service;
         private readonly IMapper _mapper;
-        public UserController(IService<User> service, IMapper mapper)
+        public UserController(IMapper mapper, IUserService userService)
         {
-            _service = service;
             _mapper = mapper;
+            _service = userService;
         }
 
         [HttpGet]
@@ -26,9 +26,9 @@ namespace EDU.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SetUserDto userDto)
+        public async Task<IActionResult> Add(LoginDto userDto)
         {
-            var user = _mapper.Map<SetUserDto, User>(userDto);
+            var user = _mapper.Map<LoginDto, User>(userDto);
             await _service.AddAsync(user);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
@@ -57,5 +57,12 @@ namespace EDU.API.Controllers
             await _service.UpdateAsync(user);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login(LoginDto login)
+        {
+            return Ok(await _service.LoginAsync(login));
+        }
+
     }
 }
