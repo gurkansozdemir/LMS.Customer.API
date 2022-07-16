@@ -10,6 +10,7 @@ namespace EDU.Service.Mapping
         {
             CreateMap<LoginDto, User>();
             CreateMap<User, GetUserDto>().ReverseMap();
+            CreateMap<SetUserDto, User>();
         }
     }
 }

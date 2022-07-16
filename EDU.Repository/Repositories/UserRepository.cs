@@ -16,8 +16,7 @@ namespace EDU.Repository.Repositories
         }
         public async Task<User> LoginAsync(LoginDto login)
         {
-            var user = await _users.Where(x => x.EMail == login.EMail || x.UserName == login.EMail).SingleOrDefaultAsync();
-            return user;
+            return await _users.Where(x => x.EMail == login.EMail || x.UserName == login.EMail).SingleOrDefaultAsync();
         }
     }
 }

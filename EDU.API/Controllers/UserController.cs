@@ -26,9 +26,9 @@ namespace EDU.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(LoginDto userDto)
+        public async Task<IActionResult> Add(SetUserDto userDto)
         {
-            var user = _mapper.Map<LoginDto, User>(userDto);
+            var user = _mapper.Map<SetUserDto, User>(userDto);
             await _service.AddAsync(user);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
@@ -41,7 +41,7 @@ namespace EDU.API.Controllers
             return Ok(CustomResponseDto<GetUserDto>.Success(userDto));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
             var user = await _service.GetByIdAsync(id);
