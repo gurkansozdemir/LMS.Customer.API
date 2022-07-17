@@ -64,5 +64,11 @@ namespace EDU.API.Controllers
             return Ok(await _service.LoginAsync(login));
         }
 
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetByClassroomId(int id)
+        {
+
+        }
+
     }
 }
