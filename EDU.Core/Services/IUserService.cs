@@ -9,5 +9,7 @@ namespace EDU.Core.Services
         Task<CustomResponseDto<GetUserDto>> LoginAsync(LoginDto login);
 
         Task<CustomResponseDto<List<GetUserDto>>> GetStudentsByClassroomIdAsync(int id);
+
+        Task<CustomResponseDto<GetUserDto>> GetTeacherByClassroomIdAsync(int id);
     }
 }

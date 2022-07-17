@@ -10,16 +10,23 @@ namespace EDU.Repository.Repositories
         private readonly AppDbContext _context;
         private readonly DbSet<User> _users;
         private readonly DbSet<StudentOfClassroom> _studentOfClasses;
+        private readonly DbSet<TeacherOfClassroom> _teacherOfClasses;
         public UserRepository(AppDbContext context) : base(context)
         {
             _context = context;
             _users = context.Set<User>();
             _studentOfClasses = context.Set<StudentOfClassroom>();
+            _teacherOfClasses = context.Set<TeacherOfClassroom>();
         }
 
         public async Task<List<User>> GetStudentsByClassroomIdAsync(int id)
         {
-            return await _studentOfClasses.Where(x => x.ClassroomId == id && x.IsActive == true).Select(x => x.Student).ToListAsync();
+            return await _studentOfClasses.Where(x => x.ClassroomId == id && x.IsActive).Select(x => x.Student).ToListAsync();
+        }
+
+        public async Task<User> GetTeacherByClassroomIdAsync(int id)
+        {
+            return await _teacherOfClasses.Where(x => x.ClassroomId == id && x.IsActive).Select(x => x.Teacher).FirstOrDefaultAsync();
         }
 
         public async Task<User> LoginAsync(LoginDto login)
