@@ -6,5 +6,6 @@ namespace EDU.Core.Repositories
     public interface IUserRepository : IGenericRepository<User>
     {
         Task<User> LoginAsync(LoginDto login);
+        Task<List<User>> GetStudentsByClassroomIdAsync(int id);
     }
 }

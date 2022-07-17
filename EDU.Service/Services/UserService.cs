@@ -18,6 +18,14 @@ namespace EDU.Service.Services
             _repository = repository;
             _mapper = mapper;
         }
+
+        public async Task<CustomResponseDto<List<GetUserDto>>> GetStudentsByClassroomIdAsync(int id)
+        {
+            var users = await _repository.GetStudentsByClassroomIdAsync(id);
+            var userDtos = _mapper.Map<List<GetUserDto>>(users);
+            return CustomResponseDto<List<GetUserDto>>.Success(userDtos);
+        }
+
         public async Task<CustomResponseDto<GetUserDto>> LoginAsync(LoginDto login)
         {
             var user = await _repository.LoginAsync(login);

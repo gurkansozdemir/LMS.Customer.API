@@ -65,10 +65,15 @@ namespace EDU.API.Controllers
         }
 
         [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> GetByClassroomId(int id)
+        public async Task<IActionResult> GetStudentsByClassroomId(int id)
         {
-
+            return Ok(await _service.GetStudentsByClassroomIdAsync(id));
         }
 
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetTeacherByClassroomId(int id)
+        {
+            return Ok(await _service.GetTeacherByClassroomIdAsync(id));
+        }
     }
 }

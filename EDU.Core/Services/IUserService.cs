@@ -7,5 +7,7 @@ namespace EDU.Core.Services
     public interface IUserService : IService<User>
     {
         Task<CustomResponseDto<GetUserDto>> LoginAsync(LoginDto login);
+
+        Task<CustomResponseDto<List<GetUserDto>>> GetStudentsByClassroomIdAsync(int id);
     }
 }
