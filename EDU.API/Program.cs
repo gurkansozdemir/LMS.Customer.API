@@ -38,6 +38,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
 
+builder.Services.AddScoped(typeof(IClassroomRepository), typeof(ClassroomRepository));
+builder.Services.AddScoped(typeof(IClassroomService), typeof(ClassroomService));
 
 var app = builder.Build();
 
