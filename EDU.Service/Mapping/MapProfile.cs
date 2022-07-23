@@ -15,6 +15,7 @@ namespace EDU.Service.Mapping
             CreateMap<SetUserDto, User>();
             CreateMap<Classroom, GetClassroomDto>();
             CreateMap<Education, GetEducationDto>();
+            CreateMap<IncludeStudentDto, StudentOfClassroom>();
         }
     }
 }

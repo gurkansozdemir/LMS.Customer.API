@@ -13,8 +13,8 @@ namespace EDU.Core.Entities
         public User Student { get; set; }
         public int ClassroomId { get; set; }
         public Classroom Classroom { get; set; }
-        public DateTime EntryDate { get; set; }
+        public DateTime EntryDate { get; set; } = DateTime.Now;
         public DateTime? LeaveDate { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
