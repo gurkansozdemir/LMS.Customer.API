@@ -14,8 +14,8 @@ namespace EDU.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> All()
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllWithEducation()
         {
             return Ok(await _service.GetAllWithEducationAsync());
         }
