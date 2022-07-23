@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using EDU.Core.DTOs;
-using EDU.Core.DTOs.ClassroomDTOs;
-using EDU.Core.Entities;
 using EDU.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +17,7 @@ namespace EDU.API.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var classrooms = await _service.GetAllAsync();
-            var classroomDtos = _mapper.Map<List<Classroom>, List<GetClassroomDto>>(classrooms.ToList());
-            return Ok(CustomResponseDto<List<GetClassroomDto>>.Success(classroomDtos));
+            return Ok(await _service.GetAllWithEducationAsync());
         }
     }
 }

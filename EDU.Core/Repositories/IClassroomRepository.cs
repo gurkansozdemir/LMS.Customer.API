@@ -4,6 +4,6 @@ namespace EDU.Core.Repositories
 {
     public interface IClassroomRepository : IGenericRepository<Classroom>
     {
-
+        Task<List<Classroom>> GetAllWithEducationAsync();
     }
 }
