@@ -1,4 +1,5 @@
-﻿using EDU.Core.DTOs.UserDTOs;
+﻿using EDU.Core;
+using EDU.Core.DTOs.UserDTOs;
 using EDU.Core.Entities;
 using EDU.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,16 @@ namespace EDU.Repository.Repositories
             _users = context.Set<User>();
             _studentOfClasses = context.Set<StudentOfClassroom>();
             _teacherOfClasses = context.Set<TeacherOfClassroom>();
+        }
+
+        public async Task<List<User>> GetAllStudentAsync()
+        {
+            return await _users.Where(x => x.RoleId == (int)RoleEnum.Student && !x.IsDeleted).ToListAsync();
+        }
+
+        public async Task<List<User>> GetAllTeachersAsync()
+        {
+           return await _users.Where(x => x.RoleId == (int)RoleEnum.Teacher && !x.IsDeleted).ToListAsync();
         }
 
         public async Task<List<User>> GetStudentsByClassroomIdAsync(int id)

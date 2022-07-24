@@ -25,6 +25,18 @@ namespace EDU.API.Controllers
             return Ok(CustomResponseDto<List<GetUserDto>>.Success(userDtos));
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> AllStudnets()
+        {
+            return Ok(await _service.GetAllStudentAsync());
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> AllTeachers()
+        {
+            return Ok(await _service.GetAllTeachersAsync());
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add(SetUserDto userDto)
         {

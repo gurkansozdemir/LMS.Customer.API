@@ -32,5 +32,13 @@ namespace EDU.API.Controllers
             await _sofcService.AddAsync(sofc);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddClassroom(SetClassroomDto classroomDto)
+        {
+            var classroom = _mapper.Map<Classroom>(classroomDto);
+            await _service.AddAsync(classroom);
+            return Ok(CustomResponseDto<NoContentDto>.Success());
+        }
     }
 }

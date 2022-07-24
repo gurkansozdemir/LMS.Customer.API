@@ -19,6 +19,20 @@ namespace EDU.Service.Services
             _mapper = mapper;
         }
 
+        public async Task<CustomResponseDto<List<GetUserDto>>> GetAllStudentAsync()
+        {
+            var users = await _repository.GetAllStudentAsync();
+            var userDtos = _mapper.Map<List<GetUserDto>>(users);
+            return CustomResponseDto<List<GetUserDto>>.Success(userDtos);
+        }
+
+        public async Task<CustomResponseDto<List<GetUserDto>>> GetAllTeachersAsync()
+        {
+            var users =await _repository.GetAllTeachersAsync();
+            var userDtos= _mapper.Map<List<GetUserDto>>(users);
+            return CustomResponseDto<List<GetUserDto>>.Success(userDtos);
+        }
+
         public async Task<CustomResponseDto<List<GetUserDto>>> GetStudentsByClassroomIdAsync(int id)
         {
             var users = await _repository.GetStudentsByClassroomIdAsync(id);
@@ -55,5 +69,7 @@ namespace EDU.Service.Services
             }
             return result;
         }
+
+
     }
 }

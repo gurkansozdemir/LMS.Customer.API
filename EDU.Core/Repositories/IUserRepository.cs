@@ -8,5 +8,7 @@ namespace EDU.Core.Repositories
         Task<User> LoginAsync(LoginDto login);
         Task<List<User>> GetStudentsByClassroomIdAsync(int id);
         Task<User> GetTeacherByClassroomIdAsync(int id);
+        Task<List<User>> GetAllStudentAsync();
+        Task<List<User>> GetAllTeachersAsync();
     }
 }

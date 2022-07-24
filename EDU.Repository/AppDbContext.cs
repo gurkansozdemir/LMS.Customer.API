@@ -14,5 +14,6 @@ namespace EDU.Repository
         public DbSet<Education> Educations { get; set; }
         public DbSet<StudentOfClassroom> StudentOfClassrooms { get; set; }
         public DbSet<TeacherOfClassroom> TeacherOfClassrooms { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }
