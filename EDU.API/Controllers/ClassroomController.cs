@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EDU.Core.DTOs;
 using EDU.Core.DTOs.ClassroomDTOs;
 using EDU.Core.Entities;
 using EDU.Core.Services;
@@ -29,7 +30,7 @@ namespace EDU.API.Controllers
         {
             var sofc = _mapper.Map<StudentOfClassroom>(include);
             await _sofcService.AddAsync(sofc);
-            return Ok();
+            return Ok(CustomResponseDto<NoContentDto>.Success());
         }
     }
 }

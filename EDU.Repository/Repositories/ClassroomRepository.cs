@@ -16,7 +16,7 @@ namespace EDU.Repository.Repositories
 
         public async Task<List<Classroom>> GetAllWithEducationAsync()
         {
-            return await _dbSet.Include(x => x.Education).ToListAsync();
+            return await _dbSet.Where(x => !x.IsDeleted).Include(x => x.Education).ToListAsync();
         }
     }
 }
