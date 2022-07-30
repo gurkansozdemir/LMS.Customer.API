@@ -40,5 +40,13 @@ namespace EDU.API.Controllers
             await _service.AddAsync(classroom);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            var classroom = await _service.GetByIdAsync(id);
+            await _service.RemoveAsync(classroom);
+            return Ok(CustomResponseDto<NoContentDto>.Success());
+        }
     }
 }
