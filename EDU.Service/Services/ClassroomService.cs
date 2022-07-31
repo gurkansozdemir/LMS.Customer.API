@@ -24,5 +24,20 @@ namespace EDU.Service.Services
             var classroomDtos = _mapper.Map<List<GetClassroomDto>>(classrooms);
             return CustomResponseDto<List<GetClassroomDto>>.Success(classroomDtos);
         }
+
+        public async Task<CustomResponseDto<ClassroomDetailDto>> GetDetailByIdAsync(int id)
+        {
+            var classroom = await _classroomRepository.GetDetailByIdAsync(id);
+            ClassroomDetailDto classroomDto = new ClassroomDetailDto() {
+                Name = classroom.Name,
+                CreatedOn = classroom.CreatedOn,
+                EducationName = classroom.Education.Name,
+                StudentCount = classroom.Students.Count,
+                TeacherName = classroom.Teachers.FirstOrDefault().Teacher.FirstName + " " + classroom.Teachers.FirstOrDefault().Teacher.LastName,
+                ActivityCount = classroom.Activities.Count
+            };
+            return CustomResponseDto<ClassroomDetailDto>.Success(classroomDto);
+
+        }
     }
 }

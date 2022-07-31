@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDU.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220717084730_NewEntities")]
-    partial class NewEntities
+    [Migration("20220731094454_Inspection")]
+    partial class Inspection
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,40 @@ namespace EDU.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("EDU.Core.Entities.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassroomId");
+
+                    b.ToTable("Activities");
+                });
 
             modelBuilder.Entity("EDU.Core.Entities.Classroom", b =>
                 {
@@ -85,6 +119,67 @@ namespace EDU.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Educations");
+                });
+
+            modelBuilder.Entity("EDU.Core.Entities.Inspection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCome")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Inspections");
+                });
+
+            modelBuilder.Entity("EDU.Core.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("EDU.Core.Entities.StudentOfClassroom", b =>
@@ -181,6 +276,9 @@ namespace EDU.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
@@ -190,7 +288,20 @@ namespace EDU.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EDU.Core.Entities.Activity", b =>
+                {
+                    b.HasOne("EDU.Core.Entities.Classroom", "Classroom")
+                        .WithMany("Activities")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classroom");
                 });
 
             modelBuilder.Entity("EDU.Core.Entities.Classroom", b =>
@@ -242,8 +353,19 @@ namespace EDU.Repository.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("EDU.Core.Entities.User", b =>
+                {
+                    b.HasOne("EDU.Core.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("EDU.Core.Entities.Classroom", b =>
                 {
+                    b.Navigation("Activities");
+
                     b.Navigation("Students");
 
                     b.Navigation("Teachers");

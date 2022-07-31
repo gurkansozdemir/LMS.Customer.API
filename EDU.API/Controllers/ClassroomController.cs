@@ -48,5 +48,11 @@ namespace EDU.API.Controllers
             await _service.RemoveAsync(classroom);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetDetailById(int id)
+        {
+            return Ok(await _service.GetDetailByIdAsync(id));
+        }
     }
 }

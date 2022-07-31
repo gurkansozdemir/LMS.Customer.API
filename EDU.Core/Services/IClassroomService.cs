@@ -7,5 +7,6 @@ namespace EDU.Core.Services
     public interface IClassroomService : IService<Classroom>
     {
         Task<CustomResponseDto<List<GetClassroomDto>>> GetAllWithEducationAsync();
+        Task<CustomResponseDto<ClassroomDetailDto>> GetDetailByIdAsync(int id);
     }
 }
