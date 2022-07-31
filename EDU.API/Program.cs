@@ -41,6 +41,9 @@ builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
 builder.Services.AddScoped(typeof(IClassroomRepository), typeof(ClassroomRepository));
 builder.Services.AddScoped(typeof(IClassroomService), typeof(ClassroomService));
 
+builder.Services.AddScoped(typeof(IActivityRepository), typeof(ActivityRepository));
+builder.Services.AddScoped(typeof(IActivityService), typeof(ActivityService));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EDU.Core.DTOs.ActivityDTOs;
 using EDU.Core.DTOs.ClassroomDTOs;
 using EDU.Core.DTOs.EducationDTOs;
 using EDU.Core.DTOs.UserDTOs;
@@ -17,6 +18,7 @@ namespace EDU.Service.Mapping
             CreateMap<Education, GetEducationDto>();
             CreateMap<IncludeStudentDto, StudentOfClassroom>();
             CreateMap<SetClassroomDto,Classroom>();
+            CreateMap<Activity, ActivityDto>().ReverseMap();
         }
     }
 }

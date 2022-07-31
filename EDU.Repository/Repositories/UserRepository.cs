@@ -8,13 +8,11 @@ namespace EDU.Repository.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly AppDbContext _context;
         private readonly DbSet<User> _users;
         private readonly DbSet<StudentOfClassroom> _studentOfClasses;
         private readonly DbSet<TeacherOfClassroom> _teacherOfClasses;
         public UserRepository(AppDbContext context) : base(context)
         {
-            _context = context;
             _users = context.Set<User>();
             _studentOfClasses = context.Set<StudentOfClassroom>();
             _teacherOfClasses = context.Set<TeacherOfClassroom>();
