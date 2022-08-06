@@ -17,6 +17,11 @@ namespace EDU.Repository.Repositories
             await _dbSet.AddAsync(entity);
         }
 
+        public async Task AddRangeAsync(List<T> entities)
+        {
+            await _dbSet.AddRangeAsync(entities);
+        }
+
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsQueryable();

@@ -20,6 +20,12 @@ namespace EDU.Service.Services
             await _unitOfWork.CommitAsync();
         }
 
+        public async Task AddRangeAsync(List<T> entities)
+        {
+            await _repository.AddRangeAsync(entities);
+            await _unitOfWork.CommitAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _repository.GetAll().ToListAsync();

@@ -10,6 +10,7 @@ namespace EDU.Core.Services
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task AddAsync(T entity);
+        Task AddRangeAsync(List<T> entities);
         Task RemoveAsync(T entity);
         Task UpdateAsync(T entity);
         Task<T> GetByIdAsync(int id);

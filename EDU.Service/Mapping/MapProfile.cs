@@ -2,6 +2,7 @@
 using EDU.Core.DTOs.ActivityDTOs;
 using EDU.Core.DTOs.ClassroomDTOs;
 using EDU.Core.DTOs.EducationDTOs;
+using EDU.Core.DTOs.InpectionDTOs;
 using EDU.Core.DTOs.UserDTOs;
 using EDU.Core.Entities;
 
@@ -19,6 +20,7 @@ namespace EDU.Service.Mapping
             CreateMap<IncludeStudentDto, StudentOfClassroom>();
             CreateMap<SetClassroomDto,Classroom>();
             CreateMap<Activity, ActivityDto>().ReverseMap();
+            CreateMap<SetInspectionDto, Inspection>();
         }
     }
 }

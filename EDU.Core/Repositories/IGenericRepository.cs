@@ -10,6 +10,7 @@ namespace EDU.Core.Repositories
     {
         IQueryable<T> GetAll();
         Task AddAsync(T entity);
+        Task AddRangeAsync(List<T> entities);
         void Remove(T entity);
         void Update(T entity);
         Task<T> GetByIdAsync(int id);
