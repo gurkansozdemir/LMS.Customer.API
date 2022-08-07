@@ -8,6 +8,7 @@ namespace EDU.Core.DTOs.InpectionDTOs
 {
     public class SetInspectionDto
     {
+        public int Id { get; set; }
         public int ActivityId { get; set; }
         public int StudentId { get; set; }
         public bool IsCome { get; set; }

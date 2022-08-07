@@ -31,5 +31,11 @@ namespace EDU.API.Controllers
             await _service.AddRangeAsync(inspections);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> CreateAndUpdate(List<SetInspectionDto> inspectionDtos)
+        {
+            return Ok(await _service.CreateAndUpdateAsync(inspectionDtos));
+        }
     }
 }

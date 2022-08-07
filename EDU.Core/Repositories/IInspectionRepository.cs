@@ -1,14 +1,11 @@
-﻿using EDU.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EDU.Core.DTOs.InpectionDTOs;
+using EDU.Core.Entities;
 
 namespace EDU.Core.Repositories
 {
     public interface IInspectionRepository : IGenericRepository<Inspection>
     {
         Task<List<Inspection>> GetByActivityIdAsync(int id);
+        Task<bool> CheckInspectionAsync(SetInspectionDto inspection);
     }
 }

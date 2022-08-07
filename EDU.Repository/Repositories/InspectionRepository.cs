@@ -1,4 +1,5 @@
-﻿using EDU.Core.Entities;
+﻿using EDU.Core.DTOs.InpectionDTOs;
+using EDU.Core.Entities;
 using EDU.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,11 @@ namespace EDU.Repository.Repositories
         {
             _appDbContext = appDbContext;
             _dbSet = appDbContext.Set<Inspection>();
+        }
+
+        public Task<bool> CheckInspectionAsync(SetInspectionDto inspection)
+        {
+            return _dbSet.Where(x => !x.IsDeleted && x.StudentId == inspection.StudentId && x.ActivityId == inspection.ActivityId).AnyAsync();
         }
 
         public Task<List<Inspection>> GetByActivityIdAsync(int id)

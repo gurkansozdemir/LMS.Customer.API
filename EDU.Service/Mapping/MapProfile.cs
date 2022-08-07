@@ -20,7 +20,7 @@ namespace EDU.Service.Mapping
             CreateMap<IncludeStudentDto, StudentOfClassroom>();
             CreateMap<SetClassroomDto,Classroom>();
             CreateMap<Activity, ActivityDto>().ReverseMap();
-            CreateMap<SetInspectionDto, Inspection>();
+            CreateMap<SetInspectionDto, Inspection>().ReverseMap();
             CreateMap<Inspection, GetInspectionDto>();  
         }
     }
