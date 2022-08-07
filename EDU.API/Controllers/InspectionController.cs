@@ -10,12 +10,18 @@ namespace EDU.API.Controllers
 {
     public class InspectionController : CustomBaseController
     {
-        private readonly IService<Inspection> _service;
+        private readonly IInspectionService _service;
         private readonly IMapper _mapper;
-        public InspectionController(IService<Inspection> service, IMapper mapper)
+        public InspectionController(IInspectionService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByActivityId(int id)
+        {
+            return Ok(await _service.GetByActivityIdAsync(id));
         }
 
         [HttpPost]
