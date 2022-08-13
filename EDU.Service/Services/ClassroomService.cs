@@ -34,7 +34,8 @@ namespace EDU.Service.Services
                 EducationName = classroom.Education.Name,
                 StudentCount = classroom.Students.Count,
                 TeacherName = classroom.Teachers.FirstOrDefault().Teacher.FirstName + " " + classroom.Teachers.FirstOrDefault().Teacher.LastName,
-                ActivityCount = classroom.Activities.Count
+                ActivityCount = classroom.Activities.Count,
+                EducationId = classroom.Education.Id
             };
             return CustomResponseDto<ClassroomDetailDto>.Success(classroomDto);
 

@@ -14,5 +14,6 @@ namespace EDU.Core.DTOs.ClassroomDTOs
         public int StudentCount { get; set; }
         public int ActivityCount { get; set; }
         public DateTime CreatedOn { get; set; }
+        public int EducationId { get; set; }
     }
 }
