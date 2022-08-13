@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace EDU.Core.Entities
 {
-    public class Education : BaseEntity
+    public class Lesson : BaseEntity
     {
         public string Name { get; set; }
-        public int Hour { get; set; }
-        public bool IsCertificate { get; set; }
-        public ICollection<Lesson> Lessons { get; set; }
-
+        public int EducationId { get; set; }
+        public Education Education { get; set; }
     }
 }
