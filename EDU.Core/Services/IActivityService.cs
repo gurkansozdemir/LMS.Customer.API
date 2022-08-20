@@ -7,5 +7,6 @@ namespace EDU.Core.Services
     public interface IActivityService : IService<Activity>
     {
         Task<CustomResponseDto<List<ActivityDto>>> GetByClassroomIdAsync(int id);
+        Task AddAndCreateInspectionsAsync(ActivityDto activityDto);
     }
 }

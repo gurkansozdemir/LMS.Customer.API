@@ -6,6 +6,5 @@ namespace EDU.Core.Repositories
     public interface IInspectionRepository : IGenericRepository<Inspection>
     {
         Task<List<Inspection>> GetByActivityIdAsync(int id);
-        Task<bool> CheckInspectionAsync(SetInspectionDto inspection);
     }
 }

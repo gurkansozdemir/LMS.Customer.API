@@ -11,11 +11,35 @@ namespace EDU.Service.Services
     public class ActivityService : Service<Activity>, IActivityService
     {
         private readonly IActivityRepository _repository;
+        private readonly IUserRepository _userRepository;
+        private readonly IInspectionRepository _inspectionRepository;
         private readonly IMapper _mapper;
-        public ActivityService(IUnitOfWork unitOfWork, IGenericRepository<Activity> genericRepository, IMapper mapper, IActivityRepository repository) : base(genericRepository, unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public ActivityService(IUnitOfWork unitOfWork, IGenericRepository<Activity> genericRepository, IMapper mapper, IActivityRepository repository, IUserRepository userRepository, IInspectionRepository inspectionRepository) : base(genericRepository, unitOfWork)
         {
             _mapper = mapper;
             _repository = repository;
+            _userRepository = userRepository;
+            _inspectionRepository = inspectionRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task AddAndCreateInspectionsAsync(ActivityDto activityDto)
+        {
+            var activity = _mapper.Map<Activity>(activityDto);
+            await _repository.AddAsync(activity);
+            var students = await _userRepository.GetStudentsByClassroomIdAsync(activity.ClassroomId);
+            List<Inspection> defautInspections = new List<Inspection>();
+            foreach (var std in students)
+            {
+                defautInspections.Add(new Inspection()
+                {
+                    Activity = activity,
+                    StudentId = std.Id
+                });
+            }
+            await _inspectionRepository.AddRangeAsync(defautInspections);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<CustomResponseDto<List<ActivityDto>>> GetByClassroomIdAsync(int id)

@@ -33,7 +33,7 @@ namespace EDU.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateAndUpdate(List<SetInspectionDto> inspectionDtos)
+        public async Task<IActionResult> Save(List<SetInspectionDto> inspectionDtos)
         {
             return Ok(await _service.CreateAndUpdateAsync(inspectionDtos));
         }

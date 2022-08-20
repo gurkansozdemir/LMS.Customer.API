@@ -29,17 +29,9 @@ namespace EDU.Service.Services
         {
             foreach (var inspectionDto in inspectionDtos)
             {
-                if (await _inspectionRepository.CheckInspectionAsync(inspectionDto))
-                {
-                    var currentInspection = await _inspectionRepository.GetByIdAsync(inspectionDto.Id);
-                    currentInspection.IsCome = inspectionDto.IsCome;
-                    _inspectionRepository.Update(currentInspection);
-                }
-                else
-                {
-                    var inspection = _mapper.Map<Inspection>(inspectionDto);
-                    await _inspectionRepository.AddAsync(inspection);
-                }
+                var currentInspection = await _inspectionRepository.GetByIdAsync(inspectionDto.Id);
+                currentInspection.IsCome = inspectionDto.IsCome;
+                _inspectionRepository.Update(currentInspection);
             }
             await _unitOfWork.CommitAsync();
             return CustomResponseDto<NoContentDto>.Success();

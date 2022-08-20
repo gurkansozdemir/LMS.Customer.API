@@ -15,11 +15,6 @@ namespace EDU.Repository.Repositories
             _dbSet = appDbContext.Set<Inspection>();
         }
 
-        public Task<bool> CheckInspectionAsync(SetInspectionDto inspection)
-        {
-            return _dbSet.Where(x => !x.IsDeleted && x.StudentId == inspection.StudentId && x.ActivityId == inspection.ActivityId).AnyAsync();
-        }
-
         public Task<List<Inspection>> GetByActivityIdAsync(int id)
         {
             return _dbSet.Where(x => !x.IsDeleted && x.ActivityId == id).Include(x => x.Student).ToListAsync();

@@ -28,8 +28,7 @@ namespace EDU.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ActivityDto activityDto)
         {
-            var activity = _mapper.Map<Activity>(activityDto);
-            await _activityService.AddAsync(activity);
+            await _activityService.AddAndCreateInspectionsAsync(activityDto);
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
     }
