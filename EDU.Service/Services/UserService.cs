@@ -56,6 +56,7 @@ namespace EDU.Service.Services
                 if (user.Password == login.Password)
                 {
                     var userDto = _mapper.Map<User, GetUserDto>(user);
+                    userDto.Role = user.Role.Name;
                     result = CustomResponseDto<GetUserDto>.Success(userDto);
                 }
                 else

@@ -25,7 +25,7 @@ namespace EDU.Repository.Repositories
 
         public async Task<List<User>> GetAllTeachersAsync()
         {
-           return await _users.Where(x => x.RoleId == (int)RoleEnum.Teacher && !x.IsDeleted).ToListAsync();
+            return await _users.Where(x => x.RoleId == (int)RoleEnum.Teacher && !x.IsDeleted).ToListAsync();
         }
 
         public async Task<List<User>> GetStudentsByClassroomIdAsync(int id)
@@ -40,7 +40,7 @@ namespace EDU.Repository.Repositories
 
         public async Task<User> LoginAsync(LoginDto login)
         {
-            return await _users.Where(x => x.EMail == login.EMail || x.UserName == login.EMail).SingleOrDefaultAsync();
+            return await _users.Where(x => x.EMail == login.EMail || x.UserName == login.EMail).Include(x => x.Role).SingleOrDefaultAsync();
         }
     }
 }
