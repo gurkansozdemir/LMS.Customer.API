@@ -18,5 +18,7 @@ namespace EDU.Repository
         public DbSet<Inspection> Inspections { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Advert> Adverts { get; set; }
+        public DbSet<Register> Registers { get; set; }
     }
 }
