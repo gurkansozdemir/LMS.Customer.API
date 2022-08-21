@@ -24,6 +24,7 @@ namespace EDU.Service.Mapping
             CreateMap<SetInspectionDto, Inspection>().ReverseMap();
             CreateMap<Inspection, GetInspectionDto>();
             CreateMap<Lesson, GetLessonDto>();
+            CreateMap<SetEducationDto, Education>();
         }
     }
 }

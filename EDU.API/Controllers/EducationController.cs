@@ -26,5 +26,14 @@ namespace EDU.API.Controllers
             var educationDtos = _mapper.Map<List<GetEducationDto>>(educations.ToList());
             return Ok(CustomResponseDto<List<GetEducationDto>>.Success(educationDtos));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(SetEducationDto educationDto)
+        {
+            var education = _mapper.Map<Education>(educationDto);
+            await _service.AddAsync(education);
+            return Ok(CustomResponseDto<NoContentDto>.Success());
+        }
+
     }
 }
