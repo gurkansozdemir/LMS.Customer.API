@@ -35,5 +35,13 @@ namespace EDU.API.Controllers
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var education = await _service.GetByIdAsync(id);
+            var educationDto = _mapper.Map<GetEducationDto>(education);
+            return Ok(CustomResponseDto<GetEducationDto>.Success(educationDto));
+        }
+
     }
 }
