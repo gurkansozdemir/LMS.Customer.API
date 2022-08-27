@@ -6,5 +6,6 @@ namespace EDU.Core.Repositories
     {
         Task<List<Classroom>> GetAllWithEducationAsync();
         Task<Classroom> GetDetailByIdAsync(int id);
+        Task<List<Classroom>> GetByTeacherIdAsync(int id);
     }
 }

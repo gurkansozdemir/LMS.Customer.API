@@ -54,5 +54,11 @@ namespace EDU.API.Controllers
         {
             return Ok(await _service.GetDetailByIdAsync(id));
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetByTeacherId(int id)
+        {
+            return Ok(await _service.GetByTeacherIdAsync(id));
+        }
     }
 }

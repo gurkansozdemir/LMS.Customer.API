@@ -1,12 +1,16 @@
-﻿namespace EDU.Core.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EDU.Core.DTOs.RegisterDTOs
 {
-    public class Register : BaseEntity
+    public class SetRegisterDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EMail { get; set; }
         public int AdvertId { get; set; }
-        public Advert Advert { get; set; }
-        public bool IsAccept { get; set; }
     }
 }

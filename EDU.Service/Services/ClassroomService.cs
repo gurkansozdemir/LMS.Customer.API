@@ -25,10 +25,31 @@ namespace EDU.Service.Services
             return CustomResponseDto<List<GetClassroomDto>>.Success(classroomDtos);
         }
 
+        public async Task<CustomResponseDto<List<ClassroomDetailDto>>> GetByTeacherIdAsync(int id)
+        {
+            var classrooms = await _classroomRepository.GetByTeacherIdAsync(id);
+            List<ClassroomDetailDto> classroomDetails = new List<ClassroomDetailDto>();
+            foreach (var cls in classrooms)
+            {
+                classroomDetails.Add(new ClassroomDetailDto()
+                {
+                    Name = cls.Name,
+                    TeacherName = cls.Teachers.FirstOrDefault().Teacher.FirstName + " " + cls.Teachers.FirstOrDefault().Teacher.LastName,
+                    CreatedOn = cls.CreatedOn,
+                    EducationId = cls.EducationId,
+                    EducationName = cls.Education.Name,
+                    ActivityCount = cls.Activities.Count(),
+                    StudentCount = cls.Students.Count()
+                });
+            }
+            return CustomResponseDto<List<ClassroomDetailDto>>.Success(classroomDetails);
+        }
+
         public async Task<CustomResponseDto<ClassroomDetailDto>> GetDetailByIdAsync(int id)
         {
             var classroom = await _classroomRepository.GetDetailByIdAsync(id);
-            ClassroomDetailDto classroomDto = new ClassroomDetailDto() {
+            ClassroomDetailDto classroomDto = new ClassroomDetailDto()
+            {
                 Name = classroom.Name,
                 CreatedOn = classroom.CreatedOn,
                 EducationName = classroom.Education.Name,

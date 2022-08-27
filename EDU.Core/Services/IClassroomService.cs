@@ -8,5 +8,7 @@ namespace EDU.Core.Services
     {
         Task<CustomResponseDto<List<GetClassroomDto>>> GetAllWithEducationAsync();
         Task<CustomResponseDto<ClassroomDetailDto>> GetDetailByIdAsync(int id);
+        Task<CustomResponseDto<List<ClassroomDetailDto>>> GetByTeacherIdAsync(int id);
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using EDU.Core.DTOs.ActivityDTOs;
+using EDU.Core.DTOs.AdvertDTOs;
 using EDU.Core.DTOs.ClassroomDTOs;
 using EDU.Core.DTOs.EducationDTOs;
 using EDU.Core.DTOs.InpectionDTOs;
 using EDU.Core.DTOs.LessonDTOs;
+using EDU.Core.DTOs.RegisterDTOs;
 using EDU.Core.DTOs.UserDTOs;
 using EDU.Core.Entities;
 
@@ -25,6 +27,10 @@ namespace EDU.Service.Mapping
             CreateMap<Inspection, GetInspectionDto>();
             CreateMap<Lesson, GetLessonDto>();
             CreateMap<SetEducationDto, Education>();
+            CreateMap<Advert, GetAdvertDto>();
+            CreateMap<SetAdvertDto, Advert>();
+            CreateMap<Register, GetRegisterDto>();
+            CreateMap<SetRegisterDto, Register>();
         }
     }
 }
