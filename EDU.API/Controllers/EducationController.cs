@@ -35,6 +35,7 @@ namespace EDU.API.Controllers
             return Ok(CustomResponseDto<NoContentDto>.Success());
         }
 
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
