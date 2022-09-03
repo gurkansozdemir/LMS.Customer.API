@@ -11,9 +11,11 @@ namespace EDU.Repository.Repositories
         private readonly DbSet<User> _users;
         private readonly DbSet<StudentOfClassroom> _studentOfClasses;
         private readonly DbSet<TeacherOfClassroom> _teacherOfClasses;
+        private readonly DbSet<Role> _roleDbSet;
         public UserRepository(AppDbContext context) : base(context)
         {
             _users = context.Set<User>();
+            _roleDbSet = context.Set<Role>();
             _studentOfClasses = context.Set<StudentOfClassroom>();
             _teacherOfClasses = context.Set<TeacherOfClassroom>();
         }
@@ -26,6 +28,11 @@ namespace EDU.Repository.Repositories
         public async Task<List<User>> GetAllTeachersAsync()
         {
             return await _users.Where(x => x.RoleId == (int)RoleEnum.Teacher && !x.IsDeleted).ToListAsync();
+        }
+
+        public async Task<Role> GetRoleByIdAsync(int id)
+        {
+            return await _roleDbSet.Where(x => !x.IsDeleted && x.Id == id).Include(x => x.MenuItems).FirstOrDefaultAsync();
         }
 
         public async Task<List<User>> GetStudentsByClassroomIdAsync(int id)

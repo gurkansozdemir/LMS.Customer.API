@@ -25,7 +25,7 @@ namespace EDU.Repository.Repositories
             return await _teacherOfClassroomDbSet.Where(x => x.TeacherId == id)
                      .Include(x => x.Classroom).ThenInclude(x => x.Teachers.Where(x => x.IsActive)).ThenInclude(x => x.Teacher)
                      .Include(x => x.Classroom).ThenInclude(x => x.Students.Where(x => x.IsActive))
-                     .Include(x => x.Classroom).ThenInclude(x => x.Activities.Where(x => x.IsDeleted))
+                     .Include(x => x.Classroom).ThenInclude(x => x.Activities.Where(x => !x.IsDeleted))
                      .Include(x => x.Classroom).ThenInclude(x => x.Education)
                      .Select(x => x.Classroom).ToListAsync();
         }

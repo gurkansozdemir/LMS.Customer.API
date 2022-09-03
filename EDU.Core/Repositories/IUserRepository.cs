@@ -10,5 +10,7 @@ namespace EDU.Core.Repositories
         Task<User> GetTeacherByClassroomIdAsync(int id);
         Task<List<User>> GetAllStudentAsync();
         Task<List<User>> GetAllTeachersAsync();
+        Task<Role> GetRoleByIdAsync(int id);
+
     }
 }

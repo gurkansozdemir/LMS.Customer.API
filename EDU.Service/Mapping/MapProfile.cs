@@ -31,6 +31,7 @@ namespace EDU.Service.Mapping
             CreateMap<SetAdvertDto, Advert>();
             CreateMap<Register, GetRegisterDto>();
             CreateMap<SetRegisterDto, Register>();
+            CreateMap<MenuItem, MenuItemDto>(); 
         }
     }
 }

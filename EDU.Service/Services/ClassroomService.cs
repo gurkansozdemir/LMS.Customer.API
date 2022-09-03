@@ -33,11 +33,13 @@ namespace EDU.Service.Services
             {
                 classroomDetails.Add(new ClassroomDetailDto()
                 {
+                    Id = cls.Id,
                     Name = cls.Name,
                     TeacherName = cls.Teachers.FirstOrDefault().Teacher.FirstName + " " + cls.Teachers.FirstOrDefault().Teacher.LastName,
                     CreatedOn = cls.CreatedOn,
                     EducationId = cls.EducationId,
                     EducationName = cls.Education.Name,
+                    EducationHour = cls.Education.Hour,
                     ActivityCount = cls.Activities.Count(),
                     StudentCount = cls.Students.Count()
                 });

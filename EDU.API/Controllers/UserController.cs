@@ -87,5 +87,12 @@ namespace EDU.API.Controllers
         {
             return Ok(await _service.GetTeacherByClassroomIdAsync(id));
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetMenuItemsByRoleId(int id)
+        {
+            return Ok(await _service.GetMenuItemsByRoleIdAsync(id));
+        }
+        
     }
 }

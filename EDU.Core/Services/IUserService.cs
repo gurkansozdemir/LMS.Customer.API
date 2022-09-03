@@ -11,5 +11,6 @@ namespace EDU.Core.Services
         Task<CustomResponseDto<GetUserDto>> GetTeacherByClassroomIdAsync(int id);
         Task<CustomResponseDto<List<GetUserDto>>> GetAllStudentAsync();
         Task<CustomResponseDto<List<GetUserDto>>> GetAllTeachersAsync();
+        Task<CustomResponseDto<List<MenuItemDto>>> GetMenuItemsByRoleIdAsync(int id); 
     }
 }

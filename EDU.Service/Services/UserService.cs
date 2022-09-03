@@ -33,6 +33,13 @@ namespace EDU.Service.Services
             return CustomResponseDto<List<GetUserDto>>.Success(userDtos);
         }
 
+        public async Task<CustomResponseDto<List<MenuItemDto>>> GetMenuItemsByRoleIdAsync(int id)
+        {
+            var role = await _repository.GetRoleByIdAsync(id);
+            var menuItemDtos = _mapper.Map<List<MenuItemDto>>(role.MenuItems);
+            return CustomResponseDto<List<MenuItemDto>>.Success(menuItemDtos);
+        }
+
         public async Task<CustomResponseDto<List<GetUserDto>>> GetStudentsByClassroomIdAsync(int id)
         {
             var users = await _repository.GetStudentsByClassroomIdAsync(id);
